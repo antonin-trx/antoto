@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+    <style>
+        label {
+            font-weight: bold;
+            width: 100px;
+            display: inline-block;
+        }
+    </style>
+{% endblock %}
+{% block errMessage %}
+    <div class="errMessage">
+        {{ errMessage }}
+    </div>
+{% endblock %}
+
+{% block body %}
+    {% if action=='edit' %}
+        <h1>Modification d'une ville</h1>
+    {% elseif action == 'create' %}
+        <h1>Création d'une ville</h1>
+    {% endif %}
+        
+    {% if action=='edit' %}
+        <form action="?c=ville&t=update&id={{ ville.id }}" method="post">
+    {% elseif action=='create' %}
+        <form action="?c=ville&t=insert" method="post">
+    {% endif %}
+    <div>
+        <label for="nom">Nom</label>
+        <input id="nom" name="nom" type="text" value="{{ ville.nom }}">
+    </div>
+    <div>  
+        <label for="code_postal">Code postal</label>  
+        <input id="code_postal" name="code_postal" type="text" value="{{ ville.codePostal }}">
+    </div>
+        <label for="departement">Département</label>
+        <select name="departement" id="departement">
+            {% for departement in departements %}
+                {%  if ville.departement.id == departement.id  %}               
+                    <option value="{{departement.id}}" selected>
+                {% else %}
+                    <option value="{{departement.id}}">
+                {% endif %}      
+                {{ departement.nom }}</option>
+                
+            {% endfor %}
+        </select>
+    <div>
+        <button type="submit">Envoyer</button><button><a href="">Annuler</a></button>
+    </div>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+{% endblock %}
+
+
+{% block body %}
+    
+<form action="?c=user&t=update&id={{ user.id }}" method="post"> 
+    <div>
+        nom: <input name="nom" value="{{ user.nom }}">
+    </div>
+    <div>
+        prenom: <input name="prenom" value="{{ user.prenom }}">
+    </div>
+    <div>
+        Date de Naissance: <input name="date_nais" value="{{ user.date_nais|date("d/m/Y") }}">
+    </div>
+    <a href="?c=user&t=liste">retour liste</a>
+    <button type="submit">Envoyer</button>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+{% endblock %}
+
+
+
+{% block body %}
+    <h1>Bonjour</h1> 
+    <ul>
+    {% for user in users %}
+        <li>{{ user }}</li>
+
+    {% endfor %}
+    </ul>
+	"message : " {{myData}} coucou {{message}}
+{% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+{% endblock %}
+
+
+{% block body %}
+    <h1>Visualisation d'une ville</h1>
+    <table>
+        <tr>
+            <td>{{ ville.nom }}</td>
+            <td>{{ ville.codePostal }}</td>
+        </tr>
+        <tr>
+            <td>Habitants</td>
+        </tr>
+        {% for user in ville.users %}
+            <tr>
+                <td>{{ user.nom }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+{% endblock %}

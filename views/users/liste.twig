@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+{% endblock %}
+
+
+{% block body %}
+    <h1>Liste des utilisateurs</h1>
+    <table id="users" class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de Naissance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr data="{{user.id}}">
+                    <td>
+                        {{ user.id }}
+                    </td>
+                    <td>
+                        {{ user.nom }}
+                    </td>
+                    <td>
+                        {{ user.prenom }}
+                    </td>
+                    <td>{{ user.dateNais|date("d/m/Y") }}</td>
+                    <td>
+                        <a href="?c=user&t=edit&id={{user.id}}">Modififer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de Naissance</th>
+                <th>Actions</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
+{% block script %}
+    <script>
+    //$("#users").DataTable();
+        $("#users").DataTable({
+            select: true,
+            //buttons: ['copy', 'csv', 'excel', 'pdf', 'print','new'],
+            layout: {
+                topStart: {
+                    buttons: [
+                        {
+                            extend: 'colvis',
+                            text: 'Colonnes visibles',
+                            action: function (e, dt, button, config) {
+                                console.log(dt.rows({ selected: true }).data());
+                            }
+                        },'showSelected',
+                        {
+                            extend: 'selected',
+                            text: 'Voir',
+                            action: function (e, dt, button, config) {
+                                console.log(dt.rows({ selected: true }).data());
+                                window.location.href = '?c=user&t=edit&id='+dt.rows({selected:true}).data()[0][0];
+                                //alert(
+                                //    dt.rows({ selected: true }).indexes().length + ' row(s) selected'
+                                //);
+                            }
+                    },
+                        {
+                            text: 'Nouveau',
+                            action: function (e, dt, button, config) {
+                                console.log(dt.rows({ selected: true }).data());
+                                window.location.href = '?c=user&t=create';
+                                //alert(
+                                //    dt.rows({ selected: true }).indexes().length + ' row(s) selected'
+                                //);
+                            }
+                    },'selectRows', 'selectColumns', 'selectCells','selectNone']
+                }
+            },
+            language: {
+                processing:     "Traitement en cours...",
+                search:         "Rechercher&nbsp;:",
+                lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
+                info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                infoPostFix:    "",
+                loadingRecords: "Chargement en cours...",
+                zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                emptyTable:     "Aucune donnée disponible dans le tableau",
+                paginate: {
+                    first:      "Premier",
+                    previous:   "Pr&eacute;c&eacute;dent",
+                    next:       "Suivant",
+                    last:       "Dernier"
+                },
+                aria: {
+                    sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                    sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                }
+            }
+        });
+        
+    </script>
+{% endblock %}

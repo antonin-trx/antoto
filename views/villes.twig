@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+{% endblock %}
+
+
+{% block body %}
+    <h1>Liste des villes</h1>
+    <table>
+    {% for ville in villes %}
+        <tr>
+        <td>{{ ville.nom }}</td><td>{{ ville.cp }}</td>
+        <td>{{ ville.surf }}  </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

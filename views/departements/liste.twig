@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+{% endblock %}
+
+{% block errMessage %}
+    <div class="errMessage">
+        {{ errMessage }}
+    </div>
+{% endblock %}
+
+{% block body %}
+    <h1>Liste des départements</h1>
+    <a class="ui-button ui-widget ui-corner-all" href="?c=ville&t=create">Création</a>
+    <table id="villes">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Code</th>
+                <th>Région</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for departement in departements %}
+                <tr>
+                    <td>{{ departement.id }}</td>
+                    <td>{{ departement.nom }}</td>
+                    <td>{{ departement.code }}</td>
+                    <td>{{ departement.region.nom }}</td>
+                    <td><a class="ui-button ui-widget ui-corner-all" href="?c=departement&t=edit&id={{departement.id}}">Modifier</a>
+                        <a class="ui-button ui-widget ui-corner-all" href="?c=departement&t=delete&id={{departement.id}}">Supprimer</a>
+                    </td>
+                </tr> 
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block script %}
+    <script>
+        new DataTable('#villes');
+    </script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+    <style>
+        label {
+            font-weight: bold;
+            width: 100px;
+            display: inline-block;
+        }
+    </style>
+{% endblock %}
+
+{% block errMessage %}
+    <div class="errMessage">
+        {{ errMessage }}
+    </div>
+{% endblock %}
+
+{% block body %}
+    {% if action=='edit' %}
+        <h1>Modification d'une région</h1>
+    {% elseif action == 'create' %}
+        <h1>Création d'une région</h1>
+    {% endif %}
+        
+    {% if action=='edit' %}
+        <form action="?c=region&t=update&id={{ region.id }}" method="post">
+    {% elseif action=='create' %}
+        <form action="?c=region&t=insert" method="post">
+    {% endif %}
+    <div>
+        <label for="nom">Nom</label>
+        <input id="nom" name="nom" type="text" value="{{ region.nom }}">
+    </div>
+    <ul>
+        <h2>Départements</h2>
+        {% for departement in region.departements %}
+            <li>{{ departement.nom }} <a class="ui-button ui-widget ui-corner-all" href="?c=region&t=delDepartement&id={{region.id}}&idDpt={{departement.id}}">Enlever</a> </li>
+        {% endfor %} 
+    </ul>
+    
+    <div>
+        <a class="ui-button ui-widget ui-corner-all" href="?c=region&t=addDepartement&id={{region.id}}&action=selectDpt">Ajout d'un département</a>
+    </div>
+    <div>
+        <button type="submit">Envoyer</button><button><a href="http://195.154.113.10/pter/squelette_framework_php/?c=region&t=liste">Annuler</a></button>
+    </div>
+    </form>
+
+
+{% endblock %}

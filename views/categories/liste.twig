@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+{% endblock %}
+
+{% block errMessage %}
+    <div class="errMessage">
+        {{ errMessage }}
+    </div>
+{% endblock %}
+
+{% block body %}
+    <h1>Liste des catégories</h1>
+    <a class="ui-button ui-widget ui-corner-all" href="?c=categories&t=create">Création</a>
+    <table id="categories">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categorie in categories %}
+                <tr>
+                    <td>{{ categorie.id }}</td>
+                    <td>{{ categorie.nom }}</td>
+                    <td><a class="ui-button ui-widget ui-corner-all" href="?c=categorie&t=edit&id={{categorie.id}}">Modifier</a>
+                        <a class="ui-button ui-widget ui-corner-all" href="?c=categorie&t=delete&id={{categorie.id}}">Supprimer</a>
+                    </td> 
+
+                </tr> 
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block script %}
+    <script>
+        new DataTable('#categories');
+    </script>
+{% endblock %}

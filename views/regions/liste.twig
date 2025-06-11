@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+{% endblock %}
+
+{% block errMessage %}
+    <div class="errMessage">
+        {{ errMessage }}
+    </div>
+{% endblock %}
+
+{% block body %}
+    <h1>Liste des régions</h1>
+    <a class="ui-button ui-widget ui-corner-all" href="?c=region&t=create">Création</a>
+    <table id="regions">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for region in regions %}
+                <tr>
+                    <td>{{ region.id }}</td>
+                    <td>{{ region.nom }}</td>
+                   
+                    <td><a class="ui-button ui-widget ui-corner-all" href="?c=region&t=edit&id={{region.id}}">Modifier</a>
+                        <a class="ui-button ui-widget ui-corner-all" href="?c=region&t=delete&id={{region.id}}">Supprimer</a>
+                    </td>
+                </tr> 
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block script %}
+    <script>
+        new DataTable('#regions');
+    </script>
+{% endblock %}

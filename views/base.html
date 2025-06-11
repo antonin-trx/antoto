@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-F754BVPZSV"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-F754BVPZSV');
+        </script>
+        <meta charset="UTF-8" />
+        {% block stylesheet  %}
+        {% endblock %}
+        <title>{% block title %} Home {% endblock %}</title>
+        
+        <link href="jquery-ui.css" rel="stylesheet" >
+        <link href="https://cdn.datatables.net/v/ju/jq-3.7.0/dt-2.2.2/b-3.2.2/b-colvis-3.2.2/b-html5-3.2.2/b-print-3.2.2/date-1.5.5/sl-3.0.0/datatables.min.css" rel="stylesheet" integrity="sha384-nAZvmXQQeEaCdVm7So1h4qqpjoPv0v7DoY3zap2Nu+3nRD9W+n+4GhfMv90Xxecz" crossorigin="anonymous">
+        <script src="https://cdn.datatables.net/v/ju/jq-3.7.0/dt-2.2.2/b-3.2.2/b-colvis-3.2.2/b-html5-3.2.2/b-print-3.2.2/date-1.5.5/sl-3.0.0/datatables.min.js" integrity="sha384-CUdYcYizIJkHl32pOPucwnPO3xbl8Pk6LzG9T7qewRdCqdXPhImszK1i2tQbSdts" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
+    </head>
+    <style>
+        .errMessage {
+            color: red;
+        }
+    </style>
+    <body>
+        
+        {% block errMessage %}
+            block
+        {% endblock %}
+
+        <h1>Base HTML</h1>
+       
+
+
+        {% block body %}
+        {% endblock %}
+       
+
+
+        {% block script %}
+            
+        {% endblock %}
+    </body>
+</html> 

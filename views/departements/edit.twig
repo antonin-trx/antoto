@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+    <style>
+        label {
+            font-weight: bold;
+            width: 100px;
+            display: inline-block;
+        }
+    </style>
+{% endblock %}
+{% block errMessage %}
+    <div class="errMessage">
+        {{ errMessage }}
+    </div>
+{% endblock %}
+
+{% block body %}
+    {% if action=='edit' %}
+        <h1>Modification d'un département</h1>
+    {% elseif action == 'create' %}
+        <h1>Création dun département</h1>
+    {% endif %}
+        
+    {% if action=='edit' %}
+        <form action="?c=departement&t=update&id={{ departement.id }}" method="post">
+    {% elseif action=='create' %}
+        <form action="?c=departement&t=insert" method="post">
+    {% endif %}
+    <div>
+        <label for="nom">Nom</label>
+        <input id="nom" name="nom" type="text" value="{{ departement.nom }}">
+    </div>
+    <div>
+        <label for="code">Code</label>
+        <input id="code" name="code" type="text" value="{{ departement.code }}">
+    </div>
+        <label for="region">Région</label>
+        <select name="region" id="region">
+            {% for region in regions %}
+                {%  if departement.region.id == region.id  %}               
+                    <option value="{{region.id}}" selected>
+                {% else %}
+                    <option value="{{region.id}}">
+                {% endif %}      
+                {{ region.nom }}</option>
+                
+            {% endfor %}
+        </select>
+    #}
+    <div>
+        <button type="submit">Envoyer</button><button><a href="">Annuler</a></button>
+    </div>
+    </form>
+
+{% endblock %}

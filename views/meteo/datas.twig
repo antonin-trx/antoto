@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+{% endblock %}
+
+{% block errMessage %}
+    <div class="errMessage">
+        {{ errMessage }}
+    </div>
+{% endblock %}
+
+{% block body %}
+    <table>
+        <tr>
+        {% for i in 0..135 %}
+                <th>{{ rows[i] }}</th>
+            {% endfor %}
+        </tr>
+        {% for j in 1..2 %}
+            <tr>
+            {% for i in 135..271 %}
+                <td>{{ rows[i*j] }}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

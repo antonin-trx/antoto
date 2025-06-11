@@ -1,0 +1,26 @@
+{   
+    "autoload": {
+		"psr-4": {
+			"Controllers\\": "Controllers/"
+			
+		},
+        "psr-0": {
+            "": "src/"
+        }
+	},
+    "require": {
+        "twig/twig": "^3.0",
+        "symfony/routing": "^7.1",
+        "doctrine/orm": "2.17.2",
+        "doctrine/dbal": "^3.7",
+        "symfony/cache": "^6.3",
+        "doctrine/annotations": "^2.0",
+        "symfony/translation-contracts": "^3.3",
+        "twig/intl-extra": "^3.8",
+        "symfony/http-foundation": "^6.4"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^7.1",
+        "symfony/maker-bundle": "^1.59"
+    }
+}

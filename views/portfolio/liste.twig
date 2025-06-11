@@ -1,0 +1,142 @@
+{% block stylesheet %}
+{% endblock %}
+
+{% block errMessage %}
+    <div class="errMessage">
+        {{ errMessage }}
+    </div>
+{% endblock %}
+
+{% block body %}
+    <style>
+    table {
+        border-collapse: collapse;
+        border: 2px solid rgb(140 140 140);
+    }
+    td {
+        border: 2px solid rgb(140 140 140);
+        padding: 8px;
+    }
+    .col {
+        width : 100px;
+        text-align: center;
+    }
+    .ica {
+        width : 100px;
+        height: 300px;
+        text-align: center;
+    }
+    .ico {
+        width : 500px;
+        height: 300px;
+        text-align: center;
+    }
+    .h {
+        height: 50px;
+        text-align: center;
+    }
+    .i {
+        width : 350px;
+    }
+    img {
+        width : 500px;
+    }
+    .vertical {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+    }
+    .empty-cell{
+        empty-cells: show;
+    }
+    .clickable {
+        cursor: pointer;
+    }
+    .green {
+        background-color: green;
+        color: white;
+    }
+    .input-cell input {
+        width: 100%;
+        border: none;
+        text-align: center;
+    }
+    </style>
+    <form method="POST" action="/save">
+    <table>
+        <tr>
+            <td colspan="8"class"empty" style="text-align: center"><b>Tableau de synthèse des réalisations professionnelles</td>
+        <tr>
+            <td colspan="5"><b>NOM et Prénom : </b></td>
+            <td colspan="3"><b>N° candidat :</td>
+
+
+        </tr>
+        <tr>
+            <td colspan="5" width="600px"><b>Centre de formation : </td>
+            <td ><b>Option :</td>
+            <td ><input type= "checkbox"><b>SISR</td>
+            <td ><input type= "checkbox"><b>SLAM</td>
+        </tr>
+        <tr>
+            <td colspan="8"><b>Adresse URL du portfolio :</td>
+        </tr>
+        <tr>
+            <td rowspan="2" class="i"><img src="img/screen.png" /></td>
+            <td rowspan="2" class="col vertical"><b>Période (sous la forme du JJ/MM/AA au JJ/MM/AA)</td>
+            <td class="h"><b>Gérer le patrimoine informatique</td>
+            <td class="h"><b>Répondre aux incidents et aux demandes d'assistance et d'évolution</td>
+            <td class="h"><b>Développer la présence en ligne de l'organisation</td>
+            <td class="h"><b>Travailler en mode projet</td>
+            <td class="h"><b>Mettre à disposition des utilisateurs un service informatique</td>
+            <td class="h"><b>Organiser son développement professionnel</td>
+        </tr>
+        <tr>  
+            <td class="ica vertical">▸Recenser et identifier les ressources numériques 
+▸Exploiter des référentiels, normes et standards adoptés par le prestataire informatique
+▸Mettre en place et vérifier les niveaux d’habilitation associés à un service
+▸Vérifier les conditions de la continuité d’un service informatique
+▸Gérer des sauvegardes
+▸Vérifier le respect des règles d’utilisation des ressources numériques</td>
+            <td class="ica vertical">▸Collecter, suivre et orienter des demandes 
+▸Traiter des demandes concernant les services réseau et système, applicatifs
+▸Traiter des demandes concernant les applications</td>
+            <td class="ica vertical">▸Participer à la valorisation de l’image de l’organisation sur les médias numériques en tenant compte du cadre juridique et des enjeux économiques
+▸Référencer les services en ligne de l’organisation et mesurer leur visibilité.
+▸Participer à l’évolution d’un site Web exploitant les données de l’organisation.</td>
+            <td class="ica vertical">▸Analyser les objectifs et les modalités d’organisation d’un projet
+▸Planifier les activités
+▸Évaluer les indicateurs de suivi d’un projet et analyser les écarts</td>
+            <td class="ica vertical">▸Réaliser les tests d’intégration et d’acceptation d’un service
+▸Déployer un service
+▸Accompagner les utilisateurs dans la mise en place d’un service</td>
+            <td class="ica vertical">▸Mettre en place son environnement d’apprentissage personnel
+▸Mettre en œuvre des outils et stratégies de veille informationnelle
+▸Gérer son identité professionnelle
+▸Développer son projet professionnel</td>
+        </tr>
+        <tr>
+            <td colspan="8" style="text-align: center">Réalisation en cours de formation</td>
+        {% for i in 1..8 %}
+        <tr class="empty-cell">
+            <td class="input-cell"><input type="text" placeholder="Saisir ici"></td>
+            {% for j in 2..8 %}
+            <td class="clickable"></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <button type="submit">Sauvegarder</button>
+    </form>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        // Ajoute un événement de clic aux cellules avec la classe "clickable"
+        document.querySelectorAll('.clickable').forEach(cell => {
+            cell.addEventListener('click', () => {
+                cell.classList.toggle('green'); // Ajoute ou enlève la classe "green"
+            });
+        });
+    </script>
+{% endblock %}
